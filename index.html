@@ -6,6 +6,43 @@
     <title></title>
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons CSS (official) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Large icon utility and hover effect (SVG-based) */
+        .icon-lg {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            transition: transform .28s ease, filter .28s ease;
+            transform-origin: center;
+        }
+        .icon-lg svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .icon-lg:hover {
+            transform: translateY(-4px) scale(1.03);
+            filter: brightness(1.08);
+        }
+        /* Responsive: smaller icons on narrow screens */
+        @media (max-width: 576px) {
+            .icon-lg { width: 40px; height: 40px; }
+        }
+        @media (max-width: 400px) {
+            .icon-lg { width: 34px; height: 34px; }
+        }
+        /* Countdown responsive sizing */
+        .countdown {
+            font-weight: 700;
+            line-height: 1;
+            color: #ffffff;
+            /* scale between 80px and 300px based on viewport */
+            font-size: clamp(80px, 18vw, 300px);
+            text-wrap: balance;
+        }
+    </style>
     <!-- Custom CSS for Video Background -->
     <style>
         .video-background {
@@ -30,56 +67,202 @@
             color: black;
             padding-top: 20%;
         }
+        /* Dark gradient section (applies to sections below the hero/video) */
+        .dark-section {
+            background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+            color: #ffffff;
+        }
+        .dark-section h2,
+        .dark-section p,
+        .dark-section .card-title {
+            color: #ffffff;
+        }
+        .dark-section .text-muted,
+        .dark-section .card .text-muted.small,
+        .dark-section p.small {
+            color: rgba(255,255,255,0.78) !important;
+        }
+        .dark-section .card {
+            background: rgba(0,0,0,0.55); /* darker translucent backdrop */
+            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        /* Make inline SVG icons white by setting currentColor */
+        .dark-section .icon-lg,
+        .dark-section .icon-lg svg {
+            color: #ffffff !important;
+            fill: currentColor;
+        }
+        /* Also apply same dark styling to any section that follows the video background */
+        .video-background ~ section {
+            background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+            color: #ffffff;
+        }
+        .video-background ~ section h2,
+        .video-background ~ section p,
+        .video-background ~ section .card-title {
+            color: #ffffff;
+        }
+        .video-background ~ section .text-muted,
+        .video-background ~ section .card .text-muted.small,
+        .video-background ~ section p.small {
+            color: rgba(255,255,255,0.78) !important;
+        }
+        .video-background ~ section .card {
+            background: rgba(0,0,0,0.55);
+            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        .video-background ~ section .icon-lg,
+        .video-background ~ section .icon-lg svg {
+            color: #ffffff !important;
+            fill: currentColor;
+        }
     </style>
 </head>
 <body>
     <!-- Video Background Section -->
     <div class="video-background">
-        <video autoplay muted loop>
+        <video autoplay muted loop playsinline>
             <source src="pfxbg.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
-        <div class="content"><img src="pfxlogo.gif" alt="PumpFX"></div>
+        <div class="content">
+            <img src="pfxlogo.gif" alt="PumpFX">
             <p class="lead"></p>
-
         </div>
     </div>
 
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
     <!-- Example Section -->
-    <section id="learn-more" class="container py-5">
-        <h2>Portal Opens Oct 14 12AM ET</h2>
-        <p>.</p>
+    <section id="learn-more" class="dark-section">
+        <div class="container py-5">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">Portal for Holders of PFX Opens Oct. 17th ET</h2>
+                <p class="text-muted">Gain early access to all features, massive discounts on mints and overlay white list sign up.</p>
+            </div>
+
+            <!-- Icon grid: responsive columns using row-cols utilities -->
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                <!-- Icon item (repeat) -->
+                <div class="col">
+                    <div class="card h-100 border-0 text-center p-3">
+                        <div class="d-flex align-items-center justify-content-center mb-3" style="height:64px;">
+                                                                                                                <!-- Bar-Chart Fill Icon (inline SVG) -->
+                                                                                                                <span class="icon-lg" aria-hidden="true">
+                                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-primary" viewBox="0 0 16 16" aria-hidden="true">
+                                                                                                                            <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/>
+                                                                                                                        </svg>
+                                                                                                                </span>
+                        </div>
+                        <h5 class="card-title mb-1">TRADE</h5>
+                        <p class="text-muted small mb-0">Use PFX Tokens on tokenized assets! From GIF Collections, Custom overlays using our Overlay Creator or choose from our gallery!</p>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 border-0 text-center p-3">
+                        <div class="d-flex align-items-center justify-content-center mb-3" style="height:64px;">
+                                                                                                                <!-- Trophy Fill Icon (inline SVG) -->
+                                                                                                                <span class="icon-lg" aria-hidden="true">
+                                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-warning" viewBox="0 0 16 16" aria-hidden="true">
+                                                                                                                            <path d="M2 1a1 1 0 0 0-1 1v2a4 4 0 0 0 3.5 3.98A5.995 5.995 0 0 0 7 12.584V14H5.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1H9v-1.416A5.995 5.995 0 0 0 11.5 7.98A4 4 0 0 0 15 4V2a1 1 0 0 0-1-1H2zm11 1v2a3 3 0 0 1-2.5 2.98A6.978 6.978 0 0 0 8 12a6.978 6.978 0 0 0-2.5-5.02A3 3 0 0 1 3 4V2h10z"/>
+                                                                                                                        </svg>
+                                                                                                                </span>
+                        </div>
+                        <h5 class="card-title mb-1">Rewards for All!</h5>
+                        <p class="text-muted small mb-0">Weekly drawings, Giveaways, Zoom meetings, White Lists, Alpha Info & More.</p>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 border-0 text-center p-3">
+                        <div class="d-flex align-items-center justify-content-center mb-3" style="height:64px;">
+                                                                                                                <!-- Rocket Takeoff Fill Icon (inline SVG) -->
+                                                                                                                <span class="icon-lg" aria-hidden="true">
+                                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-success" viewBox="0 0 16 16" aria-hidden="true">
+                                                                                                                            <path d="M14.653 1.328a.5.5 0 0 0-.653-.653C11.39 1.763 8.913 3 6.5 3 4.087 3 1.61 1.763.999.675a.5.5 0 0 0-.653.653C.27 3.11 1 5.5 2.5 8c1.5 2.5 4 4.5 7 6 2.5 1.2 4.89 2.03 6.326 2.348a.5.5 0 0 0 .653-.653c-.536-2.08-1.8-4.56-3.997-7.155C11.976 5.24 12.83 3.1 14.653 1.328z"/>
+                                                                                                                        </svg>
+                                                                                                                </span>
+                        </div>
+                        <h5 class="card-title mb-1">Blast Off</h5>
+                        <p class="text-muted small mb-0">If you're reading this- you are so fkn early. Blastoff official launch sponsored by BundleBusters ensuring secure trading.</p>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 border-0 text-center p-3">
+                        <div class="d-flex align-items-center justify-content-center mb-3" style="height:64px;">
+                                                                                                                <!-- Check2 Icon (inline SVG) -->
+                                                                                                                <span class="icon-lg" aria-hidden="true">
+                                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-danger" viewBox="0 0 16 16" aria-hidden="true">
+                                                                                                                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708 0z"/>
+                                                                                                                        </svg>
+                                                                                                                </span>
+                        </div>
+                        <h5 class="card-title mb-1">Audited</h5>
+                        <p class="text-muted small mb-0">The project, contracts and image generators are being audited by Slowmist. One of the most reputable in Web3.</p>
+                    </div>
+                </div>
+
+                <!-- Add more items as needed (copy/paste the .col block) -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown -->
+    <section class="dark-section">
+        <div class="container py-5">
+            <div class="text-center">
+                <div id="countdown" aria-live="polite" style="font-weight:700; font-size:300px; line-height:1;">00:00:00</div>
+                <p class="text-muted small mt-3">Portal opens on Oct 17, 2025 — 12:00 AM ET</p>
+            </div>
+        </div>
     </section>
 
     <!-- Bootstrap JS and Popper.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
-</div>
-</div>
+        <script>
+            (function(){
+                // Target: 2025-10-17 00:00 Eastern Time (America/New_York).
+                // On this date Eastern Time is observing daylight saving (EDT, UTC-4),
+                // so the equivalent UTC instant is 2025-10-17T04:00:00Z.
+                var target = new Date(Date.UTC(2025, 9, 17, 4, 0, 0)); // months are 0-based (9 = October)
+                var el = document.getElementById('countdown');
+                if (!el) return;
+
+                function pad(n){ return n.toString().padStart(2, '0'); }
+
+                function update(){
+                    var now = new Date();
+                    var diff = target - now;
+                    if (diff <= 0){
+                        el.textContent = '00:00:00:00';
+                        clearInterval(timer);
+                        return;
+                    }
+                    var days = Math.floor(diff / (24*60*60*1000));
+                    var rem = diff % (24*60*60*1000);
+                    var hrs = Math.floor(rem / (60*60*1000));
+                    rem = rem % (60*60*1000);
+                    var mins = Math.floor(rem / (60*1000));
+                    var secs = Math.floor((rem % (60*1000)) / 1000);
+                    // Format: DDD HH:MM:SS  — but user requested HUGE text; we'll display Days on left if >0
+                    if (days > 0){
+                        el.textContent = days + 'd ' + pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
+                    } else {
+                        el.textContent = pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
+                    }
+                }
+
+                update();
+                var timer = setInterval(update, 250);
+            })();
+        </script>
 </body>
 </html>
